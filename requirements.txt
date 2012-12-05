@@ -1,0 +1,3 @@
+markdown2
+Django>=1.3,<1.5
+south>=0.7
