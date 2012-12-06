@@ -19,7 +19,7 @@ def normalize_key(key):
 def get_cache_key(obj, field, **kwargs):
     if not conf.CACHE_FIELDS:
         return None
-    start = "MARKDOWN_FIELD"
+    start = "EASYMARKUP_MARKDOWN_FIELD"
     ct = ContentType.objects.get_for_model(obj)
     natural_key = '%s-%s' % ct.natural_key()
 

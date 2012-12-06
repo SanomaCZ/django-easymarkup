@@ -19,5 +19,5 @@ def field_to_cache(sender, **kwargs):
 
 for item in conf.CTS_CACHE_ON_SAVE.items():
     ct, fileds = item
-    model = ContentType.objects.get_by_natural_key(**ct.split(".")).model_class()
+    model = ContentType.objects.get_by_natural_key(*ct.split(".")).model_class()
     signals.post_save.connect(field_to_cache, sender=model)

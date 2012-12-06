@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 
 from easymarkup.cache import get_from_cache
 
-log = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 register = template.Library()
 
@@ -14,8 +14,8 @@ register = template.Library()
 @register.filter(is_safe=True)
 def markdown(obj, arg=''):
     """
-    Runs Markdown over a given value, optionally using various
-    args python-markdown2 supports.
+    Runs Markdown over a given object property, optionally using safe_mode
+    python-markdown2 supports.
 
     Syntax::
 
@@ -53,7 +53,7 @@ class RenderNode(template.Node):
             field = self.field.resolve(context)
 
         if not hasattr(obj, field):
-            #FIXME: log here
+            logger.error("object '%s' has not field '%s' " % (obj, field))
             return ''
 
         text = get_from_cache(obj, field, safe_mode=True)
@@ -66,6 +66,10 @@ class RenderNode(template.Node):
 def do_render(parser, token):
     """
     Renders a field using python-markdown2.
+
+    Syntax::
+
+        {% render_markup obj "field" %}
 
     Example::
 
