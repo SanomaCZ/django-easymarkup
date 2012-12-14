@@ -7,7 +7,7 @@ CACHE_FIELDS = getattr(settings, 'EASYMARKUP_CACHE_FIELDS', True)
 FIELD_CACHE_TIMEOUT = getattr(settings, 'EASYMARKUP_FIELD_CACHE_TIMEOUT', 30 * 60)
 
 # set python-markdown extras to be used for markdown call
-MARKDOWN_EXTRAS = getattr(settings, 'EASYMARKUP_MARKDOWN_EXTRAS', [])
+MARKDOWN_EXTRAS = getattr(settings, 'EASYMARKUP_MARKDOWN_EXTRAS', ['code-friendly', 'wiki-tables'])
 
 # specify content types natural keys as key and wanted fields as list value
 # for on save cache rendered fileds
